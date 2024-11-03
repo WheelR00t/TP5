@@ -9,16 +9,6 @@
 Routeur :
 
 ````
-PS C:\Users\titda> ssh wheelroot@10.5.1.254
-The authenticity of host '10.5.1.254 (10.5.1.254)' can't be established.
-ED25519 key fingerprint is SHA256:u3x04ZXl+bU5UtqCZfCfsYTGjtM9wlrBqYK4U/gmfh8.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? y
-Please type 'yes', 'no' or the fingerprint: y
-Please type 'yes', 'no' or the fingerprint: yes
-Warning: Permanently added '10.5.1.254' (ED25519) to the list of known hosts.
-wheelroot@10.5.1.254's password:
-Last login: Mon Oct 14 15:20:18 2024
 [wheelroot@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -42,16 +32,6 @@ Last login: Mon Oct 14 15:20:18 2024
 
 Client1 :
 ````
-PS C:\Users\titda> ssh wheelroot@10.5.1.11
-The authenticity of host '10.5.1.11 (10.5.1.11)' can't be established.
-ED25519 key fingerprint is SHA256:u3x04ZXl+bU5UtqCZfCfsYTGjtM9wlrBqYK4U/gmfh8.
-This host key is known by the following other names/addresses:
-    C:\Users\titda/.ssh/known_hosts:4: 10.5.1.254
-    C:\Users\titda/.ssh/known_hosts:7: 10.5.1.12
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '10.5.1.11' (ED25519) to the list of known hosts.
-wheelroot@10.5.1.11's password:
-Last login: Mon Oct 14 15:20:18 2024
 [wheelroot@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -70,15 +50,6 @@ Last login: Mon Oct 14 15:20:18 2024
 Client2:
 
 ````
-PS C:\Users\titda> ssh wheelroot@10.5.1.12
-The authenticity of host '10.5.1.12 (10.5.1.12)' can't be established.
-ED25519 key fingerprint is SHA256:u3x04ZXl+bU5UtqCZfCfsYTGjtM9wlrBqYK4U/gmfh8.
-This host key is known by the following other names/addresses:
-    C:\Users\titda/.ssh/known_hosts:4: 10.5.1.254
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '10.5.1.12' (ED25519) to the list of known hosts.
-wheelroot@10.5.1.12's password:
-Last login: Mon Oct 14 15:20:18 2024
 [wheelroot@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
