@@ -31,7 +31,7 @@ Routeur :
 ````
 
 Client1 :
-````
+````powershell
 [wheelroot@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -49,7 +49,7 @@ Client1 :
 
 Client2:
 
-````
+````powershell
 [wheelroot@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -68,24 +68,24 @@ Client2:
 # Hostname
 
 Routeur:
-````
+````powershell
 [wheelroot@localhost ~]$ sudo hostnamectl set-hostname routeur
 ````
 
 Client1:
-````
+````powershell
 [wheelroot@localhost ~]$ sudo hostnamectl set-hostname client1
 ````
 
 Client2:
-````
+````powershell
 [wheelroot@localhost ~]$ sudo hostnamectl set-hostname client2
 ````
 
 # Ping
 
 Routeur vers client1 et client2:
-````
+````powershell
 [wheelroot@routeur ~]$ ping 10.5.1.11
 PING 10.5.1.11 (10.5.1.11) 56(84) bytes of data.
 64 bytes from 10.5.1.11: icmp_seq=1 ttl=64 time=1.27 ms
@@ -112,7 +112,7 @@ rtt min/avg/max/mdev = 0.351/0.723/1.377/0.411 ms
 ````
 
 client1 vers client2 et routeur:
-````
+````powershell
 [wheelroot@client1 ~]$ ping 10.5.1.254
 PING 10.5.1.254 (10.5.1.254) 56(84) bytes of data.
 64 bytes from 10.5.1.254: icmp_seq=1 ttl=64 time=0.704 ms
@@ -140,7 +140,7 @@ rtt min/avg/max/mdev = 0.357/0.640/1.227/0.343 ms
 1. Accès internet routeur
 ☀️ Déjà, prouvez que le routeur a un accès internet
 
-````
+````powershell
 [wheelroot@routeur ~]$ ping www.ynov.com
 PING www.ynov.com (172.67.74.226) 56(84) bytes of data.
 64 bytes from 172.67.74.226 (172.67.74.226): icmp_seq=1 ttl=46 time=46.6 ms
@@ -157,7 +157,7 @@ rtt min/avg/max/mdev = 46.647/69.610/123.829/27.924 ms
 
 ☀️ Activez le routage
 
-````
+````powershell
 [wheelroot@routeur ~]$ sudo firewall-cmd --add-masquerade --permanent
 [sudo] password for wheelroot:
 success
@@ -169,7 +169,7 @@ success
 
 ☀️ Prouvez que les clients ont un accès internet
 
-````
+````powershell
 [wheelroot@client1 ~]$ ping ynov.com
 PING ynov.com (104.26.10.233) 56(84) bytes of data.
 64 bytes from 104.26.10.233 (104.26.10.233): icmp_seq=1 ttl=45 time=101 ms
@@ -184,7 +184,7 @@ rtt min/avg/max/mdev = 96.343/102.380/110.597/5.161 ms
 
 Client2
 
-````
+````powershell
 [wheelroot@client2 network-scripts]$ ping ynov.com
 PING ynov.com (104.26.11.233) 56(84) bytes of data.
 64 bytes from 104.26.11.233 (104.26.11.233): icmp_seq=1 ttl=45 time=39.3 ms
@@ -199,7 +199,7 @@ rtt min/avg/max/mdev = 36.007/52.166/78.546/16.797 ms
 
 ☀️ Montrez-moi le contenu final du fichier de configuration de l'interface réseau
 
-````
+````powershell
 [wheelroot@client2 etc]$ cd /etc/sys
 sysconfig/          sysctl.conf         sysctl.d/           systemd/            system-release      system-release-cpe
 [wheelroot@client2 etc]$ cd /etc/sysconfig/network-scripts/
@@ -221,7 +221,7 @@ DNS1=1.1.1.1
 # III. Serveur SSH
 
 ☀️ Sur routeur.tp5.b1, déterminer sur quel port écoute le serveur SSH
-````
+````powershell
 [wheelroot@routeur ~]$ sudo ss -lnpt | grep 22
 LISTEN 0      128          0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=701,fd=3))
 LISTEN 0      128             [::]:22           [::]:*    users:(("sshd",pid=701,fd=4))
@@ -230,7 +230,7 @@ LISTEN 0      128             [::]:22           [::]:*    users:(("sshd",pid=701
 
 ☀️ Sur routeur.tp5.b1, vérifier que ce port est bien ouvert
 
-````
+````powershell
 [wheelroot@routeur ~]$ sudo firewall-cmd --permanent --add-port=22/tcp
 success
 [wheelroot@routeur ~]$ sudo firewall-cmd --reload
@@ -258,7 +258,7 @@ A. Installation et configuration du serveur DHCP
 
 ☀️ Installez et configurez un serveur DHCP sur la machine routeur.tp5.b1
 
-````
+````powershell
 [wheelroot@routeur ~]$ sudo dnf -y install dhcp-server
 
 
@@ -277,7 +277,7 @@ authoring-byte-order little-endian;
 server-duid "\000\001\000\001.\241EY\010\000'\206\373\013";
 ````
 
-````
+````powershell
 [wheelroot@routeur ~]$ sudo cat /etc/dhcp/dhcpd.conf
 default-lease-time 2592000;
 
@@ -299,7 +299,7 @@ subnet 10.5.1.0 netmask 255.255.255.0 {
 ````
 ### B. Test avec un nouveau client
 
-````
+````powershell
 [wheelroot@client3 ~]$ ping ynov.com
 PING ynov.com (172.67.74.226) 56(84) bytes of data.
 64 bytes from 172.67.74.226 (172.67.74.226): icmp_seq=1 ttl=54 time=20.3 ms
@@ -314,7 +314,7 @@ rtt min/avg/max/mdev = 20.322/21.145/23.205/1.063 ms
 ````
 
 ### IP
-````
+````powershell
 [wheelroot@client3 ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
